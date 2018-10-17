@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'test-app';
+  countChangedHandler(count: number) {
+   
+    console.log(count);
+  }
 }
