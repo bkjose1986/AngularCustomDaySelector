@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    DaySelectorModule
+    DaySelectorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
