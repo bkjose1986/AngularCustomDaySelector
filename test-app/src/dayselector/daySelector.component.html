@@ -1,10 +1,7 @@
 <div class="days-container">
-    <br><br>
-    <form [formGroup]="form" >
+    <form class="days-form" [formGroup]="form">
         <label formArrayName="days" *ngFor="let order of form.controls.days.controls; let i = index">
-            <input type="checkbox" [formControlName]="i" >
-            {{days[i].name}}
-        </label><br><br>
-</form>
-<br><br>
+            <input type="checkbox" [formControlName]="i"> {{days[i].name}}
+        </label>
+    </form>
 </div>

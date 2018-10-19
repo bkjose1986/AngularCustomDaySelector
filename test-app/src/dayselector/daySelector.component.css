@@ -1,8 +1,0 @@
-/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import "~material-design-icons/iconfont/material-icons.css";
-@import '~@angular/material/theming'; */
-
-.days-container{
-    border: 1px solid #aaaaaa;
-    border-radius: 25px;
-}

@@ -15,7 +15,7 @@ import { takeUntil } from 'rxjs/operators';
  */
 @Component({
     templateUrl: './daySelector.component.html',
-    styleUrls: ['./daySelector.component.css'],
+    styleUrls: ['./daySelector.component.scss'],
     // tslint:disable-next-line:component-selector
     selector: 'day-selector'
 })
