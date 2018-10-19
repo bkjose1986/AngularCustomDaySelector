@@ -4,7 +4,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 /**
  * Components
@@ -14,7 +14,7 @@ import { DaySelectorComponent } from './daySelector.component';
 @NgModule({
     imports: [ BrowserModule, 
         ReactiveFormsModule,
-        MatButtonModule ],
+        MatCheckboxModule ],
     declarations : [ DaySelectorComponent ],
     exports : [ DaySelectorComponent],
     providers : [],
