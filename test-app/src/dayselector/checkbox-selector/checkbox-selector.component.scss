@@ -1,0 +1,12 @@
+.days-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;  
+    .days-form {
+        display: flex;
+        align-items: baseline;
+        border: solid 1px gray;
+        padding: 20px;
+    } 
+}

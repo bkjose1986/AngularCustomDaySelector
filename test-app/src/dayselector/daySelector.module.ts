@@ -10,12 +10,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
  * Components
  */
 import { DaySelectorComponent } from './daySelector.component';
+import { CheckboxSelectorComponent } from './checkbox-selector/checkbox-selector.component';
+import { BoxSelectorComponent } from './box-selector/box-selector.component';
 
 @NgModule({
     imports: [ BrowserModule, 
         ReactiveFormsModule,
         MatCheckboxModule ],
-    declarations : [ DaySelectorComponent ],
+    declarations : [ DaySelectorComponent, CheckboxSelectorComponent, BoxSelectorComponent ],
     exports : [ DaySelectorComponent],
     providers : [],
     entryComponents : []
