@@ -1,0 +1,25 @@
+.container{
+    display: inline-flex;
+    margin: auto;
+    text-align:center;
+    .list {
+        border: solid 1px #9E9E9E;
+        display:inline-flex;
+     }
+    //  .buttonSelection{
+    //     display:inline-flex;
+    //  }
+     .verticalSpace {
+        margin: 2em;
+    }
+    .buttonSelection button {
+        height: 35px;
+        width: 30px;
+    }
+ }
+ .selectedDay{
+     background-color: blue;
+ }
+ 
+
+ 

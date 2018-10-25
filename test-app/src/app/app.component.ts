@@ -9,9 +9,9 @@ export class AppComponent {
   title = 'test-app';
   /**
    * type of the selection
-   * boxSelection, checkboxSelection
+   * boxSelection, checkboxSelection, listSelection
    */
-  public type='checkboxSelection'
+  public type='listSelection'
   /**
    * default days
    */

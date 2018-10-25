@@ -1,2 +1,3 @@
 <app-checkbox-selector *ngIf="selectionType=='checkboxSelection'" [defaultDays]="selectedDefaultDays" (selectedDays)="selectionChangedHandler($event)"></app-checkbox-selector>
-<app-box-selector *ngIf="selectionType=='boxSelection'"></app-box-selector>
+<app-box-selector *ngIf="selectionType=='boxSelection'" [defaultDays]="selectedDefaultDays" (selectedDays)="selectionChangedHandler($event)"></app-box-selector>
+<app-list-selector *ngIf="selectionType=='listSelection'" [defaultDays]="selectedDefaultDays" (selectedDays)="selectionChangedHandler($event)"></app-list-selector>

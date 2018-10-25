@@ -1,0 +1,27 @@
+#checkbox-id, .days-form label input{
+    display: none;
+}
+.days-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;  
+    .days-form {
+        display: flex;
+        align-items: baseline;
+        border: solid 1px gray;
+        padding: 20px;
+    } 
+}
+.second{
+    border: solid 1px #9E9E9E;
+    background-color: #9E9E9E;
+    padding: 10px;
+    margin: 10px;
+}
+.first{
+    border: solid 1p red !important;
+    background-color: red !important;
+    padding: 10px;
+    margin: 10px;
+}

@@ -1,3 +1,8 @@
-<p>
-  box-selector works!
-</p>
+
+<div class="days-container">
+<form class="days-form" [formGroup]="form">
+    <label formArrayName="days" *ngFor="let order of form.controls.days.controls; let i = index" [ngClass]="{'first': firstClass, 'second': secondClass}" (change)="onClick1($event)" >
+        <input type="checkbox" [formControlName]="i"> {{days[i].name}}
+    </label>
+</form>
+</div>
