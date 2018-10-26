@@ -11,7 +11,7 @@ export class AppComponent {
    * type of the selection
    * boxSelection, checkboxSelection, listSelection
    */
-  public type='listSelection'
+  public type='boxSelection'
   /**
    * default days
    */
