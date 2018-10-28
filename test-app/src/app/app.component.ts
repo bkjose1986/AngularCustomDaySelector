@@ -11,16 +11,16 @@ export class AppComponent {
    * type of the selection
    * boxSelection, checkboxSelection, listSelection
    */
-  public type='boxSelection'
+  public type = 'checkboxSelection';
   /**
    * default days
    */
-  selectedDays = ["monday", "friday", "saturday"];
+  selectedDays = ['monday', 'friday', 'saturday'];
   /**
-   * to get selected days from child component
-   * @param daysSelected 
+   *The method to catch the emitted event
+   * @param daysSelected
    */
-  selectionChangedHandler(daysSelected: string) {  
+  selectionChangedHandler(daysSelected: string) {
     console.log(daysSelected);
   }
 }
