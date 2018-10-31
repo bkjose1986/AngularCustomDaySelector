@@ -1,19 +1,21 @@
 <div class="container">
-    <div class="verticalSpace list unSelected">
+    <div class="verticalSpace list">
         <mat-list role="list">
             <mat-list-item role="listitem" *ngFor="let day of unSelectedDays; let i = index" >
-                <div id="{{ 'day' + i }}" class='slect' (click)="unSelectedDaysClick($event)">{{day}}</div>
+                <div class='daylist unSelected' id="{{ 'day' + i }}" (click)="unSelectedDaysClick($event)">{{day}}</div>
             </mat-list-item>
           </mat-list>
     </div>
     <div class="verticalSpace buttonSelection">
       <button (click)="toSelect()">&gt;</button><br>
-      <button (click)="toDeSelect()">&lt;</button>
+      <button (click)="toDeSelect()">&lt;</button><br>
+      <button (click)="toAllSelect()">&gt;&gt;</button><br>
+      <button (click)="toAllDeSelect()">&lt;&lt;</button><br>
     </div>
-    <div class="verticalSpace list selected">
+    <div class="verticalSpace list ">
        <mat-list role="list">
           <mat-list-item role="listitem" *ngFor="let day of daysSelected; let i = index">
-              <div id="{{ 'selectedDay' + i }}" (click)="selectedDaysClick($event)">{{day}}</div>
+              <div class='daylist selected' id="{{ 'selectedDay' + i }}" (click)="selectedDaysClick($event)">{{day}}</div>
           </mat-list-item>
         </mat-list>
     </div>

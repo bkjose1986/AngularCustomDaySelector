@@ -91,7 +91,7 @@ export class BoxSelectorComponent implements OnInit {
   }
   onDayClick(event){    
       if((event.target.parentNode).style.backgroundColor=='blue'){
-        (event.target.parentNode).style.backgroundColor='#9E9E9E';
+        (event.target.parentNode).style.backgroundColor='#fff';
       }
       else{
         (event.target.parentNode).style.backgroundColor='blue';

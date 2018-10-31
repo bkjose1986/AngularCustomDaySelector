@@ -11,14 +11,24 @@
     //  }
      .verticalSpace {
         margin: 2em;
+        min-width: 8em !important;
+        min-height: 345px;
     }
     .buttonSelection button {
         height: 35px;
         width: 30px;
+        margin-bottom: 20px;
+        margin-top: 23px;
+    }
+    mat-list, mat-list-item{
+        width: 100%;
     }
  }
  .selectedDay{
      background-color: blue;
+ }
+ .daylist{
+    cursor: pointer
  }
  
 

@@ -53,13 +53,14 @@ export class ListSelectorComponent implements OnInit {
     document.getElementById(event.target.id).style.backgroundColor='blue';
   }
   toSelect(){  
-    let unSelectedDaysList
-    if(this.daysSelected.indexOf(this.selectedDayToMove)<0){
+    let unSelectedDaysList;
+    if(this.selectedDayToMove != undefined && this.daysSelected.indexOf(this.selectedDayToMove)<0){
       this.daysSelected.push(this.selectedDayToMove) ;
       unSelectedDaysList = this.unSelectedDays.filter(day => day !== this.selectedDayToMove)
       this.unSelectedDays = unSelectedDaysList;
     }
     this.selectedDays.emit(this.daysSelected);
+    this.selectedDayToMove = null;
   }
   selectedDaysClick(event){
     this.unSelectedDayToMove = event.target.innerHTML;
@@ -70,12 +71,31 @@ export class ListSelectorComponent implements OnInit {
     document.getElementById(event.target.id).style.backgroundColor='blue';
   }
   toDeSelect(){  
-    let selectedDaysList
-    if(this.unSelectedDays.indexOf(this.unSelectedDayToMove)<0){
+    let selectedDaysList;
+    if(this.unSelectedDayToMove != undefined && this.unSelectedDays.indexOf(this.unSelectedDayToMove)<0 ){
       this.unSelectedDays.push(this.unSelectedDayToMove) ;
       selectedDaysList = this.daysSelected.filter(day => day !== this.unSelectedDayToMove)
       this.daysSelected = selectedDaysList;
     }
+    this.selectedDays.emit(this.daysSelected);
+    this.unSelectedDayToMove = null;
+  }
+  toAllSelect(){
+    let unSelectedDaysList;
+    this.unSelectedDays.forEach(element => {
+      this.daysSelected.push(element);
+      unSelectedDaysList = this.unSelectedDays.filter(day => day !== element)
+      this.unSelectedDays = unSelectedDaysList;
+    });
+    this.selectedDays.emit(this.daysSelected);
+  }
+  toAllDeSelect(){
+    let selectedDaysList;
+    this.daysSelected.forEach(element => {
+      this.unSelectedDays.push(element);
+      selectedDaysList = this.daysSelected.filter(day => day !== element)
+      this.daysSelected = selectedDaysList;
+    });
     this.selectedDays.emit(this.daysSelected);
   }
 }
