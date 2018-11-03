@@ -37,17 +37,17 @@ export class ListSelectorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.daysSelected = this.defaultDays
+    this.daysSelected = this.defaultDays;
     this.filterSelectedDays();
   }
 
-  filterSelectedDays(){ 
-    this.days.map(day =>this.defaultDays.indexOf(day.id) > -1 ? true : this.unSelectedDays.push(day.id))
+  filterSelectedDays() { 
+    this.days.map(day => this.defaultDays.indexOf(day.id) > -1 ? true : this.unSelectedDays.push(day.id));
   }
   unSelectedDaysClick(event){
     this.selectedDayToMove = event.target.innerHTML;
-    let allSelectedDays =(<any>document.getElementsByClassName('unSelected'))
-    for(let i=0;i<allSelectedDays.length;i++){
+    let allSelectedDays = (<any>document.getElementsByClassName('unSelected'));
+    for(let i=0; i<allSelectedDays.length; i++) {
       allSelectedDays[i].style.backgroundColor='#fff';
     }
     document.getElementById(event.target.id).style.backgroundColor='blue';
