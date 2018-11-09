@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 /**
@@ -13,7 +13,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './checkbox-selector.component.html',
   styleUrls: ['./checkbox-selector.component.scss']
 })
-export class CheckboxSelectorComponent implements OnInit {
+export class CheckboxSelectorComponent implements OnInit, OnDestroy {
   /**
    * The form group for days
    */
@@ -44,7 +44,7 @@ export class CheckboxSelectorComponent implements OnInit {
   public destroyFlag$: Subject<boolean> = new Subject<boolean>();
   /**
    * Constructs the component
-   * @param formBuilder 
+   * @param formBuilder FormBuilder variable
    */
   constructor(private formBuilder: FormBuilder) { }
   /**
@@ -58,7 +58,7 @@ export class CheckboxSelectorComponent implements OnInit {
    * Creates a new array with a form control for each day
    */
   private _createCheckboxArray(): void {
-      let controls = this.days.map(day => new FormControl(this.defaultDays.indexOf(day.id) > -1 ? true : false));
+      const controls = this.days.map(day => new FormControl(this.defaultDays.indexOf(day.id) > -1 ? true : false));
 
       this.form = this.formBuilder.group({
           days: new FormArray(controls)
@@ -70,7 +70,7 @@ export class CheckboxSelectorComponent implements OnInit {
    */
   private _subscibeFormChanges(): void {
       this.form.valueChanges.pipe(takeUntil(this.destroyFlag$)).subscribe((value) => {
-          let daysSelected = value.days.map((v, i) => v ? this.days[i].id : null).filter(v => v !== null);
+          const daysSelected = value.days.map((v, i) => v ? this.days[i].id : null).filter(v => v !== null);
           this.selectedDays.emit(daysSelected);
       });
 

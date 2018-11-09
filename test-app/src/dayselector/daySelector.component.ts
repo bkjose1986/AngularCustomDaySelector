@@ -39,15 +39,15 @@ export class DaySelectorComponent implements OnInit {
     constructor( ) { }
     /**
      * ng2 life-cycle hook
-     */ 
+     */
     ngOnInit() {
         this.selectedDefaultDays = this.defaultDays;
     }
     /**
      * to pass selected days to parent component
-     * @param daysSelected 
+     * @param daysSelected selected days
      */
-    selectionChangedHandler(daysSelected: string) {  
+    selectionChangedHandler(daysSelected: string) {
         this.selectedDays.emit(daysSelected);
       }
 

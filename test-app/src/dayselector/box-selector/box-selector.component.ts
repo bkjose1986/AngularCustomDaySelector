@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 /**
@@ -12,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './box-selector.component.html',
   styleUrls: ['./box-selector.component.scss']
 })
-export class BoxSelectorComponent implements OnInit {
+export class BoxSelectorComponent implements OnInit, OnDestroy, AfterViewInit {
   /**
    * The form group for days
    */
@@ -43,7 +43,7 @@ export class BoxSelectorComponent implements OnInit {
   public destroyFlag$: Subject<boolean> = new Subject<boolean>();
   /**
    * Constructs the component
-   * @param formBuilder 
+   * @param formBuilder FormBuilder variable
    */
   constructor(private formBuilder: FormBuilder) { }
   /**
@@ -53,12 +53,15 @@ export class BoxSelectorComponent implements OnInit {
       this._createCheckboxArray();
       this._subscibeFormChanges();
   }
-  ngAfterViewInit(){
-      let allSelectedDays: HTMLCollectionOf<Element>=(document.getElementsByClassName('default'));
-      for(let i=0;i<allSelectedDays.length;i++){
-            let day1 = this.days.filter(v => {return v.name == (allSelectedDays[i].textContent).trim()});
-            if(this.defaultDays.indexOf(day1[0].id)>-1){
-                (<HTMLElement>document.getElementById(allSelectedDays[i].children[0].id).parentNode).style.backgroundColor='blue';
+  /**
+   * ng2 life-cycle hook
+   */
+  ngAfterViewInit() {
+      const allSelectedDays: HTMLCollectionOf<Element > = (document.getElementsByClassName('default'));
+      for (let i = 0; i < allSelectedDays.length; i++) {
+            const day1 = this.days.filter(v =>  v.name === (allSelectedDays[i].textContent).trim());
+            if (this.defaultDays.indexOf(day1[0].id) > -1) {
+                (<HTMLElement>document.getElementById(allSelectedDays[i].children[0].id).parentNode).style.backgroundColor = 'blue';
             }
       }
   }
@@ -66,7 +69,7 @@ export class BoxSelectorComponent implements OnInit {
    * Creates a new array with a form control for each day
    */
   private _createCheckboxArray(): void {
-      let controls = this.days.map(day => new FormControl(this.defaultDays.indexOf(day.id) > -1 ? true : false));
+      const controls = this.days.map(day => new FormControl(this.defaultDays.indexOf(day.id) > -1 ? true : false));
       this.form = this.formBuilder.group({
           days: new FormArray(controls)
       });
@@ -77,7 +80,7 @@ export class BoxSelectorComponent implements OnInit {
    */
   private _subscibeFormChanges(): void {
       this.form.valueChanges.pipe(takeUntil(this.destroyFlag$)).subscribe((value) => {
-        let daysSelected = value.days.map((v, i) => v ? this.days[i].id : null).filter(v => v !== null);
+        const daysSelected = value.days.map((v, i) => v ? this.days[i].id : null).filter(v => v !== null);
         this.selectedDays.emit(daysSelected);
     });
 
@@ -89,12 +92,14 @@ export class BoxSelectorComponent implements OnInit {
       this.destroyFlag$.next(true);
       this.destroyFlag$.unsubscribe();
   }
-  onDayClick(event){    
-      if((event.target.parentNode).style.backgroundColor=='blue'){
-        (event.target.parentNode).style.backgroundColor='#fff';
-      }
-      else{
-        (event.target.parentNode).style.backgroundColor='blue';
+  /**
+   * detect click event and change background color of tghe seected day
+   */
+  onDayClick(event) {
+      if ((event.target.parentNode).style.backgroundColor === 'blue') {
+        (event.target.parentNode).style.backgroundColor = '#fff';
+      } else {
+        (event.target.parentNode).style.backgroundColor = 'blue';
       }
   }
 }

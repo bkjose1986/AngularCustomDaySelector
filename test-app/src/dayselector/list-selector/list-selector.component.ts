@@ -7,9 +7,21 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./list-selector.component.scss']
 })
 export class ListSelectorComponent implements OnInit {
+  /**
+   * array of days which are not selected
+   */
   public unSelectedDays = [];
+  /**
+   * selected day to move form array of selected day to unselected day
+   */
   public selectedDayToMove;
+  /**
+   * selected day to move from array of unselected days to selected day
+   */
   public unSelectedDayToMove;
+  /**
+   * array of days which are selected
+   */
   public daysSelected ;
   /**
    * The 7 days in a week
@@ -32,68 +44,92 @@ export class ListSelectorComponent implements OnInit {
  */
 @Output() selectedDays: EventEmitter<string> = new EventEmitter();
 /**
- * The destroy flag
+ * constructs the component
  */
   constructor() { }
-
+ /**
+   * ng2 life-cycle hook
+   */
   ngOnInit() {
     this.daysSelected = this.defaultDays;
     this.filterSelectedDays();
   }
-
-  filterSelectedDays() { 
+/**
+ * find days which are not default days
+ */
+  filterSelectedDays() {
     this.days.map(day => this.defaultDays.indexOf(day.id) > -1 ? true : this.unSelectedDays.push(day.id));
   }
-  unSelectedDaysClick(event){
+  /**
+   * change the background color of selected day from unselected days list
+   * @param event click event as parameter
+   */
+  unSelectedDaysClick(event) {
     this.selectedDayToMove = event.target.innerHTML;
-    let allSelectedDays = (<any>document.getElementsByClassName('unSelected'));
-    for(let i=0; i<allSelectedDays.length; i++) {
-      allSelectedDays[i].style.backgroundColor='#fff';
+    const allSelectedDays = (<any>document.getElementsByClassName('unSelected'));
+    for ( let i = 0; i < allSelectedDays.length; i++) {
+      allSelectedDays[i].style.backgroundColor = '#fff';
     }
-    document.getElementById(event.target.id).style.backgroundColor='blue';
+    document.getElementById(event.target.id).style.backgroundColor = 'blue';
   }
-  toSelect(){  
+  /**
+   * move selected day from unselected days list to selected days list and emit the selected days list to parent
+   */
+  toSelect() {
     let unSelectedDaysList;
-    if(this.selectedDayToMove != undefined && this.daysSelected.indexOf(this.selectedDayToMove)<0){
+    if (this.selectedDayToMove !== undefined && this.daysSelected.indexOf(this.selectedDayToMove) < 0) {
       this.daysSelected.push(this.selectedDayToMove) ;
-      unSelectedDaysList = this.unSelectedDays.filter(day => day !== this.selectedDayToMove)
+      unSelectedDaysList = this.unSelectedDays.filter(day => day !== this.selectedDayToMove);
       this.unSelectedDays = unSelectedDaysList;
     }
     this.selectedDays.emit(this.daysSelected);
     this.selectedDayToMove = null;
   }
-  selectedDaysClick(event){
+  /**
+   * change the background color of selected day from selected days list
+   * @param event click event as parameter
+   */
+  selectedDaysClick(event) {
     this.unSelectedDayToMove = event.target.innerHTML;
-    let allSelectedDays =(<any>document.getElementsByClassName('selected'))
-    for(let i=0;i<allSelectedDays.length;i++){
-      allSelectedDays[i].style.backgroundColor='#fff';
+    const allSelectedDays = (<any>document.getElementsByClassName('selected'));
+    for (let i = 0; i < allSelectedDays.length; i++) {
+      allSelectedDays[i].style.backgroundColor = '#fff';
     }
-    document.getElementById(event.target.id).style.backgroundColor='blue';
+    document.getElementById(event.target.id).style.backgroundColor = 'blue';
   }
-  toDeSelect(){  
+  /**
+   * move selected day from selected days list to unselected days list and emit the selected days list to parent
+   */
+  toDeSelect() {
     let selectedDaysList;
-    if(this.unSelectedDayToMove != undefined && this.unSelectedDays.indexOf(this.unSelectedDayToMove)<0 ){
+    if (this.unSelectedDayToMove !== undefined && this.unSelectedDays.indexOf(this.unSelectedDayToMove) < 0 ) {
       this.unSelectedDays.push(this.unSelectedDayToMove) ;
-      selectedDaysList = this.daysSelected.filter(day => day !== this.unSelectedDayToMove)
+      selectedDaysList = this.daysSelected.filter(day => day !== this.unSelectedDayToMove);
       this.daysSelected = selectedDaysList;
     }
     this.selectedDays.emit(this.daysSelected);
     this.unSelectedDayToMove = null;
   }
-  toAllSelect(){
+  /**
+   * move all days from unselected days list to selected days list and emit the selected days list to parent
+   */
+  toAllSelect() {
     let unSelectedDaysList;
     this.unSelectedDays.forEach(element => {
       this.daysSelected.push(element);
-      unSelectedDaysList = this.unSelectedDays.filter(day => day !== element)
+      unSelectedDaysList = this.unSelectedDays.filter(day => day !== element);
       this.unSelectedDays = unSelectedDaysList;
     });
     this.selectedDays.emit(this.daysSelected);
   }
-  toAllDeSelect(){
+  /**
+   * move all days from selected days list to unselected days list
+   */
+  toAllDeSelect() {
     let selectedDaysList;
     this.daysSelected.forEach(element => {
       this.unSelectedDays.push(element);
-      selectedDaysList = this.daysSelected.filter(day => day !== element)
+      selectedDaysList = this.daysSelected.filter(day => day !== element);
       this.daysSelected = selectedDaysList;
     });
     this.selectedDays.emit(this.daysSelected);

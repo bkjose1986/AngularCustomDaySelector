@@ -15,10 +15,10 @@ export class AppComponent {
   /**
    * default days
    */
-  selectedDays = ['monday', 'friday', 'saturday'];
+  selectedDays =  ['monday', 'friday', 'saturday'];
   /**
    *The method to catch the emitted event
-   * @param daysSelected
+   * @param daysSelected to display selected days
    */
   selectionChangedHandler(daysSelected: string) {
     console.log(daysSelected);

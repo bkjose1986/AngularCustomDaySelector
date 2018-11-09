@@ -16,9 +16,9 @@ import { BoxSelectorComponent } from './box-selector/box-selector.component';
 import { ListSelectorComponent } from './list-selector/list-selector.component';
 
 @NgModule({
-    imports: [ BrowserModule, 
+    imports: [ BrowserModule,
         ReactiveFormsModule,
-        MatCheckboxModule, 
+        MatCheckboxModule,
         MatListModule,
         MatButtonModule,
         FormsModule],
